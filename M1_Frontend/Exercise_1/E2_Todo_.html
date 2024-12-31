@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+    }
+    .container {
+      margin: 20px auto;
+      width: 50%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    input {
+      padding: 10px;
+      width: 70%;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    ol {
+      text-align: left;
+      margin: 20px auto;
+      padding: 0;
+      list-style-type: decimal;
+    }
+    li {
+      margin: 5px 0;
+      padding: 10px;
+      background: #f4f4f4;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .delete {
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>To-Do List</h1>
+  </header>
+  <section class="container">
+    <input type="text" id="taskInput" placeholder="Enter a new task...">
+    <button onclick="addTask()">Add Task</button>
+    <ol id="taskList"></ol>
+  </section>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById('taskInput');
+      const taskList = document.getElementById('taskList');
+      const taskValue = taskInput.value.trim();
+
+      if (taskValue === '') {
+        alert('Please enter a task!');
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.innerHTML = `${taskValue} <span class="delete" onclick="deleteTask(this)">X</span>`;
+      taskList.appendChild(li);
+
+      taskInput.value = '';
+    }
+
+    function deleteTask(element) {
+      element.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
